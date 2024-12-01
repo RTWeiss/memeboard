@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #4f46e5;
+  --color-primary-light: #6366f1;
+  --color-secondary: #f97316;
+  --color-secondary-light: #fb923c;
+  --color-secondary-dark: #ea580c;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+@layer components {
+  /* Solana Wallet Adapter styles */
+  .wallet-adapter-button {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white !bg-secondary hover:!bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition-colors;
+  }
+
+  .wallet-adapter-modal-wrapper {
+    @apply bg-white rounded-lg shadow-xl max-w-md mx-auto;
+  }
+
+  .wallet-adapter-modal-button-close {
+    @apply text-gray-400 hover:text-gray-500;
+  }
+
+  .wallet-adapter-modal-title {
+    @apply text-lg font-medium text-gray-900;
+  }
+
+  .wallet-adapter-modal-content {
+    @apply mt-2;
+  }
+
+  .wallet-adapter-modal-list {
+    @apply space-y-2;
+  }
+
+  .wallet-adapter-modal-list-more {
+    @apply text-secondary hover:text-secondary-light;
+  }
+
+  /* Custom Components */
+  .pixel-grid-container {
+    @apply bg-white rounded-lg shadow-lg border border-gray-200 p-2 sm:p-4 overflow-hidden;
+    touch-action: none;
+    -webkit-overflow-scrolling: touch;
+    background-image: linear-gradient(45deg, #f8fafc 25%, transparent 25%),
+                    linear-gradient(-45deg, #f8fafc 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #f8fafc 75%),
+                    linear-gradient(-45deg, transparent 75%, #f8fafc 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+
+  .pixel-grid-controls {
+    @apply bg-white border border-gray-200 p-3 rounded-lg sticky top-0 z-10 shadow-sm;
+  }
+
+  .control-button {
+    @apply p-2 rounded-lg hover:bg-secondary hover:text-white transition-colors active:bg-secondary-light;
+  }
+
+  .pixel-details {
+    @apply bg-white rounded-lg shadow-lg border-l-4 border-primary p-4 sm:p-6;
+  }
+
+  .purchase-panel {
+    @apply bg-white rounded-lg shadow-lg border-l-4 border-secondary p-4 sm:p-6 sticky top-20;
+  }
+
+  .purchase-button {
+    @apply w-full flex items-center justify-center gap-2 bg-secondary text-white py-3 px-4 rounded-lg hover:bg-secondary-light disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium active:bg-secondary-light;
+  }
+}
+
+/* Animations */
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  .wallet-adapter-button {
+    @apply text-sm px-3 py-2;
+  }
+
+  .pixel-grid-controls {
+    @apply flex-col gap-2;
+  }
+
+  .control-button {
+    @apply p-1.5;
+  }
+
+  .pixel-grid-container {
+    @apply rounded-none border-x-0 px-0;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .purchase-panel {
+    @apply rounded-none border-x-0 shadow-none;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .control-button {
+    @apply active:bg-secondary-light;
+  }
+
+  .purchase-button {
+    @apply active:bg-secondary-light;
+  }
+}
